@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package bank;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./bank";
+
+message Transaction {
+    string id = 1;
+    float amount = 2;
+    google.protobuf.Timestamp time = 3;
+}
+
+message CreateAccountRequest {
+    string name=1;
+    string password=2;
+}
+
+message CreateAccountResponse {
+    string accountId=1;
+    string name=2;
+}
+
+enum Action{
+    ACTION_UNSPECIFIED = 0;
+    ACTION_DEPOSIT = 1;
+    ACTION_WITHDRAWAL = 2;
+}
+
+message TransactionRequest {
+    Action action=1;
+    string accountId=2;
+    float amount=3;
+    
+}
+
+message TransactionResponse {
+    Transaction transaction = 1;
+    float accountBalance = 2;
+}
+
+
+service ClerkBankService {
+    rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
+    rpc DoTransaction(TransactionRequest) returns (TransactionResponse) {}
+}
+
+message TransferRequest {
+   string sourceAccountId = 1;
+   string targetAccountId = 2;
+   float value = 3;
+   string password = 4;
+}
+
+message BankStatementRequest {
+    string accountId = 1;
+    string password = 2;
+}
+
+message BankStatementResponse {
+    repeated Transaction transactions = 1;
+    float amount = 2;
+}
+
+service ClientBankService {
+    rpc Transfer(TransferRequest) returns (TransactionResponse) {}
+    rpc Statement(BankStatementRequest) returns (BankStatementResponse) {}
+}
