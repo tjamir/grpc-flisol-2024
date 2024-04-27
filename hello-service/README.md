@@ -91,12 +91,18 @@ if __name__ == "__main__":
 python hello_server.py
 ```
 
+
 ### Testando utilizando o gRPC UI   
 
 Instação do gRPC UI
 
 ```
 go install github.com/fullstorydev/grpcui/cmd/grpcui@latest
+```
+
+### Configurando o path do go
+```
+export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
 Rodando o gRPC UI
