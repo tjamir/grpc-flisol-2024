@@ -107,7 +107,7 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 Rodando o gRPC UI
 ```
-grpcui -port 8000
+grpcui -plaintext localhost:8000
 ```
 
 ### Desafio
