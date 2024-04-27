@@ -2,7 +2,7 @@
 # Setup de ambiente deV GRPC em python
 
 ```
-python -m pip pip install virtualenv
+pip install virtualenv
 virtualenv venv
 source venv/bin/activate
 python -m pip install --upgrade pip
